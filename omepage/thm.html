@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Connection Error Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #dc3545 0%, #a71e2a 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #dc3545;
+        }
+        
+        h2 {
+            color: #dc3545;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h3 {
+            color: #a71e2a;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .step {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #dc3545;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            tab-size: 4;
+        }
+        
+        code {
+            background: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .error-message {
+            background: #ffe6e6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .solution {
+            background: #e8f4ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #0088FF;
+        }
+        
+        .note {
+            background: #fff9e6;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            background: #a71e2a;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MySQL Connection Error Solution</h1>
+            <p class="subtitle">Fixing the "MySQL shutdown unexpectedly" error in XAMPP</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Understanding the Error</h2>
+            
+            <div class="error-message">
+                <p><strong>Error Message:</strong> "MySQL shutdown unexpectedly. This may be due to a blocked port, missing dependencies, improper privileges, a crash, or a shutdown by another method."</p>
+            </div>
+            
+            <p>This error typically occurs when XAMPP's MySQL service fails to start properly. The most common causes are:</p>
+            
+            <ul>
+                <li>Port 3306 (MySQL default port) is already in use by another application</li>
+                <li>Corrupted MySQL data files</li>
+                <li>Incorrect file permissions</li>
+                <li>Conflicting MySQL installations</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Step-by-Step Solutions</h2>
+            
+            <div class="step">
+                <h3><span class="step-number">1</span> Check Port Conflict</h3>
+                <p>The most common issue is that port 3306 is already in use by another MySQL installation or application.</p>
+                
+                <h4>How to check:</h4>
+                <ol>
+                    <li>Open Command Prompt as Administrator</li>
+                    <li>Run the command: <code>netstat -ano | findstr :3306</code></li>
+                    <li>If you see any output, it means the port is in use</li>
+                    <li>Note the PID (Process ID) and run: <code>tasklist | findstr [PID]</code></li>
+                    <li>This will show which process is using the port</li>
+                </ol>
+                
+                <h4>Solutions:</h4>
+                <ul>
+                    <li>Stop the other service using the port</li>
+                    <li>Change MySQL port in XAMPP configuration</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">2</span> Change MySQL Port</h3>
+                <p>If port 3306 is occupied, you can change the MySQL port in XAMPP:</p>
+                
+                <ol>
+                    <li>Open the XAMPP Control Panel</li>
+                    <li>Click on 'Config' next to MySQL</li>
+                    <li>Select 'my.ini' or 'my.cnf'</li>
+                    <li>Find the line: <code>port = 3306</code></li>
+                    <li>Change it to an unused port (e.g., 3307, 3308)</li>
+                    <li>Save the file and restart MySQL</li>
+                </ol>
+                
+                <div class="note">
+                    <p><strong>Note:</strong> If you change the MySQL port, you'll need to update your PHP connection code to use the new port:</p>
+                    <pre><code>$conn = new mysqli("localhost", "username", "password", "database", 3307);</code></pre>
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">3</span> Check MySQL Data Files</h3>
+                <p>Corrupted data files can prevent MySQL from starting:</p>
+                
+                <ol>
+                    <li>Navigate to XAMPP installation directory (usually C:\xampp)</li>
+                    <li>Go to the <code>mysql\data</code> folder</li>
+                    <li>Look for any error logs (files with .err extension)</li>
+                    <li>Check if the <code>ibdata1</code> file is corrupted (often the culprit)</li>
+                </ol>
+                
+                <h4>Solution:</h4>
+                <p>Backup your databases, then:</p>
+                <ol>
+                    <li>Stop MySQL from XAMPP Control Panel</li>
+                    <li>Rename the <code>mysql\data</code> folder to <code>data_old</code></li>
+                    <li>Create a new empty <code>data</code> folder</li>
+                    <li>Copy the contents from <code>mysql\backup</code> to the new <code>data</code> folder</li>
+                    <li>Try starting MySQL again</li>
+                </ol>
+                
+                <div class="note">
+                    <p><strong>Warning:</strong> This will reset all your databases to default. Only do this if you don't have important data or you have backups.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">4</span> Use XAMPP Shell for Diagnosis</h3>
+                <p>XAMPP includes a shell that can help diagnose the issue:</p>
+                
+                <ol>
+                    <li>Open XAMPP Control Panel</li>
+                    <li>Click on 'Shell' button</li>
+                    <li>Run: <code>mysql\bin\mysqld --console</code></li>
+                    <li>This will start MySQL with console output</li>
+                    <li>Look for error messages that might indicate the specific problem</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">5</span> Check Windows Event Viewer</h3>
+                <p>Windows Event Viewer often has more detailed error information:</p>
+                
+                <ol>
+                    <li>Press Windows Key + R, type <code>eventvwr.msc</code></li>
+                    <li>Go to Windows Logs → Application</li>
+                    <li>Look for error messages related to MySQL or mysqld</li>
+                    <li>These logs often provide specific error codes</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">6</span> Reinstall XAMPP</h3>
+                <p>If all else fails, consider reinstalling XAMPP:</p>
+                
+                <ol>
+                    <li>Export your databases if possible</li>
+                    <li>Uninstall XAMPP</li>
+                    <li>Delete the XAMPP installation directory</li>
+                    <li>Download the latest version of XAMPP</li>
+                    <li>Install it in a different directory (e.g., C:\xampp2)</li>
+                    <li>Restore your databases</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Alternative Solutions</h2>
+            
+            <div class="solution">
+                <h3>Use MySQL Workbench with XAMPP</h3>
+                <p>If you can't get XAMPP's MySQL to work, you can install MySQL separately and use MySQL Workbench:</p>
+                
+                <ol>
+                    <li>Download and install MySQL Community Server</li>
+                    <li>Download and install MySQL Workbench</li>
+                    <li>Configure your PHP application to connect to the standalone MySQL server</li>
+                </ol>
+            </div>
+            
+            <div class="solution">
+                <h3>Use a Different Web Server Package</h3>
+                <p>Consider trying other web server packages if XAMPP continues to have issues:</p>
+                
+                <ul>
+                    <li>WAMP Server (Windows)</li>
+                    <li>MAMP Server (Mac/Windows)</li>
+                    <li>Laragon (Windows)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Test Your Connection</h2>
+            
+            <p>Once you've resolved the MySQL issue, test your PHP connection with this code:</p>
+            
+            <pre><code>&lt;?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?&gt;</code></pre>
+            
+            <p>Save this as <code>test_connection.php</code> in your <code>htdocs</code> folder and access it through your browser.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Additional Resources</h2>
+            
+            <p>If you're still experiencing issues, check these resources:</p>
+            
+            <ul>
+                <li><a href="https://www.apachefriends.org/faq_windows.html" class="btn">XAMPP Windows FAQ</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/xampp" class="btn">Stack Overflow XAMPP Questions</a></li>
+                <li><a href="https://community.apachefriends.org/" class="btn">XAMPP Forums</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 MySQL Connection Troubleshooting Guide | For XAMPP Users</p>
+        </div>
+    </footer>
+</body>
+</html>
